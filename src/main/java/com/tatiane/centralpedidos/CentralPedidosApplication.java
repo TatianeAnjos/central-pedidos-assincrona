@@ -1,4 +1,4 @@
-package com.seunome.centralpedidos;
+package com.tatiane.centralpedidos;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
