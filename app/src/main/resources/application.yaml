@@ -1,0 +1,36 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:centralpedidosdb
+    driver-class-name: org.h2.Driver
+    username: tatiane
+    password: olamundo
+  mail:
+    host: adicionar em caso de envio real de email
+    port: adicionar em caso de envio real de email
+    username: seu-usuario
+    password: sua-senha
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: update
+
+  h2:
+    console:
+      enabled: true
+
+  kafka:
+    bootstrap-servers: localhost:9092
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+    admin:
+      properties:
+        bootstrap.servers: localhost:9092
+      auto-create: true
