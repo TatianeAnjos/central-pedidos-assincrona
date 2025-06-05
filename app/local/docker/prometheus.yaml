@@ -1,0 +1,21 @@
+global:
+  scrape_interval: 5s
+
+  scrape_configs:
+    - job_name: 'central-pedidos-assincrona'
+      metrics_path: '/actuator/prometheus'
+      static_configs:
+        - targets: ['localhost:8080']
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus
+  endpoint:
+    prometheus:
+      enabled: true
+  metrics:
+    export:
+      prometheus:
+        enabled: true

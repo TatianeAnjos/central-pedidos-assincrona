@@ -5,61 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2bfceed1-df74-4af1-b17b-854838c006d9" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/app/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/tatiane/centralpedidos/CentralPedidosApplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/tatiane/centralpedidos/controller/PedidoController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/tatiane/centralpedidos/dto/PedidoRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/tatiane/centralpedidos/dto/PedidoResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/tatiane/centralpedidos/dto/ProdutoRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/tatiane/centralpedidos/dto/ProdutoResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/tatiane/centralpedidos/entities/Pedido.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/tatiane/centralpedidos/entities/Produto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/tatiane/centralpedidos/exceptions/ErroNoProcessamentoDoPedidoException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/tatiane/centralpedidos/exceptions/GlobalExceptionHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/tatiane/centralpedidos/exceptions/PedidoInvalidoException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/tatiane/centralpedidos/mappers/PedidoMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/tatiane/centralpedidos/mappers/ProdutoMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/tatiane/centralpedidos/repository/PedidoRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/tatiane/centralpedidos/repository/ProdutoRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/tatiane/centralpedidos/service/PedidoService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/test/java/com/tatiane/centralpedidos/PedidoServiceTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/test/java/com/tatiane/centralpedidos/integration/cenarios/PedidoServiceIntegrationTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/app/.idea/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/.idea/jarRepositories.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LICENSE" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/central-pedidos-assincrona.iml" beforeDir="false" afterPath="$PROJECT_DIR$/app/central-pedidos-assincrona.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/tatiane/centralpedidos/CentralPedidosApplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/tatiane/centralpedidos/controller/PedidoController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/tatiane/centralpedidos/dto/PedidoRequest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/tatiane/centralpedidos/dto/PedidoResponse.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/tatiane/centralpedidos/dto/ProdutoRequest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/tatiane/centralpedidos/dto/ProdutoResponse.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/tatiane/centralpedidos/entities/Pedido.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/tatiane/centralpedidos/entities/Produto.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/tatiane/centralpedidos/exceptions/ErroNoProcessamentoDoPedidoException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/tatiane/centralpedidos/exceptions/GlobalExceptionHandler.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/tatiane/centralpedidos/exceptions/PedidoInvalidoException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/tatiane/centralpedidos/mappers/PedidoMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/tatiane/centralpedidos/mappers/ProdutoMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/tatiane/centralpedidos/repository/PedidoRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/tatiane/centralpedidos/repository/ProdutoRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/tatiane/centralpedidos/service/PedidoService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/tatiane/centralpedidos/PedidoServiceTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/tatiane/centralpedidos/integration/cenarios/PedidoServiceIntegrationTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

@@ -1,9 +1,9 @@
 spring:
   datasource:
-    url: jdbc:h2:mem:centralpedidosdb
-    driver-class-name: org.h2.Driver
-    username: tatiane
-    password: olamundo
+    url: jdbc:postgresql://localhost:5432/central_pedidos_assincrona
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
   mail:
     host: adicionar em caso de envio real de email
     port: adicionar em caso de envio real de email
@@ -15,15 +15,10 @@ spring:
           auth: true
           starttls:
             enable: true
-
   jpa:
     database-platform: org.hibernate.dialect.H2Dialect
     hibernate:
       ddl-auto: update
-
-  h2:
-    console:
-      enabled: true
 
   kafka:
     bootstrap-servers: localhost:9092
@@ -34,3 +29,15 @@ spring:
       properties:
         bootstrap.servers: localhost:9092
       auto-create: true
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus
+  endpoint:
+    prometheus:
+      enabled: true
+  metrics:
+    export:
+      prometheus:
+        enabled: true
