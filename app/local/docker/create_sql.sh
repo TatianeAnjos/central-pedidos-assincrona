@@ -1,0 +1,4 @@
+CREATE TABLE evento_processado (
+    id VARCHAR(255) PRIMARY KEY,
+    data_criacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
