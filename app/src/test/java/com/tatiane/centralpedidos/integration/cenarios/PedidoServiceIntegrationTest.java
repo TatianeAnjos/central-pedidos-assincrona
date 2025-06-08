@@ -45,17 +45,18 @@ public class PedidoServiceIntegrationTest {
 
     @Test
     public void deveProcessarEGravarOPedidoNoBanco() throws ErroNoProcessamentoDoPedidoException {
+        PedidoRequest pedidoRequest = criaListaPedidosRequestMock().get(0);
         // Arrange
-        List<PedidoRequest> listaPedidosRequest = Collections.singletonList(criaListaPedidosRequestMock().get(0));
+        List<PedidoRequest> listaPedidosRequest = Collections.singletonList(pedidoRequest);
 
         pedidoService.processarPedidoAsync(listaPedidosRequest);
 
         //Act
-        List<Pedido> listaPedidosResponse = pedidoRepository.findAll();
+        List<Pedido> listaPedidosCliente = pedidoRepository.findByEmail(pedidoRequest.getEmailCliente());
 
         // Assert
-        assertNotNull(listaPedidosResponse);
-        assertEquals("Televisao", listaPedidosResponse.get(0).getListaProdutos().get(0).getNomeProduto());
+        assertNotNull(listaPedidosCliente);
+        assertEquals("Cliente 1", listaPedidosCliente.get(0).getNomeCliente());
     }
 
     @Test
@@ -79,11 +80,10 @@ public class PedidoServiceIntegrationTest {
                 .andExpect(status().isOk())
                // .andExpect(jsonPath("$[0].nomeCliente").value("Cliente 2"))
                 .andExpect(jsonPath("$[0].listaProdutoResponse").isArray())
-                .andExpect(jsonPath("$[0].listaProdutoResponse[0].nomeProduto").value("Televisao"));
+                .andExpect(jsonPath("$[0].listaProdutoResponse[0].nomeCliente").value("Cliente 2"));
     }
 
     @Test
-    @Disabled
     public void deveRetornarErroSePedidoForInvalido() throws Exception {
         PedidoRequest pedidoInvalido = PedidoRequest.builder()
                 .nomeCliente("Cliente Sem Produto")
@@ -102,6 +102,7 @@ public class PedidoServiceIntegrationTest {
     private List<PedidoRequest> criaListaPedidosRequestMock() {
         return Arrays.asList(PedidoRequest.builder()
                         .nomeCliente("Cliente 1")
+                        .EmailCliente("teste@gmail.com")
                         .listaProdutoRequest(Collections.singletonList(criaListaProdutosRequest().get(0)))
                         .build(),
                 PedidoRequest.builder()
@@ -114,10 +115,12 @@ public class PedidoServiceIntegrationTest {
     private List<ProdutoRequest> criaListaProdutosRequest() {
         return Arrays.asList(ProdutoRequest.builder()
                         .nomeProduto("Televisao")
+                        .idProduto(159)
                         .quantidadeProduto(1)
                         .build(),
                 ProdutoRequest.builder()
                         .nomeProduto("Sofa")
+                        .idProduto(856)
                         .quantidadeProduto(1)
                         .build()
 

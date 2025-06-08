@@ -13,6 +13,8 @@ import com.tatiane.centralpedidos.producer.NotificacaoPedidoProducer;
 import com.tatiane.centralpedidos.repository.PedidoRepository;
 import com.tatiane.centralpedidos.repository.ProdutoRepository;
 import com.tatiane.centralpedidos.service.PedidoService;
+import io.micrometer.core.instrument.Counter;
+import io.micrometer.core.instrument.MeterRegistry;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -43,6 +45,10 @@ public class PedidoServiceTest {
 
     private NotificacaoPedidoProducer notificacaoPedidoProducer;
 
+    private MeterRegistry meterRegistry;
+
+    private Counter counter;
+
     @InjectMocks
     private PedidoService pedidoService;
 
@@ -53,7 +59,9 @@ public class PedidoServiceTest {
         pedidoMapper = Mockito.mock(PedidoMapper.class);
         produtoMapper = Mockito.mock(ProdutoMapper.class);
         notificacaoPedidoProducer = Mockito.mock(NotificacaoPedidoProducer.class);
-        pedidoService = new PedidoService(pedidoRepository, produtoRepository, pedidoMapper, produtoMapper, notificacaoPedidoProducer);
+        meterRegistry = Mockito.mock(MeterRegistry.class);
+        counter = Mockito.mock(Counter.class);
+        pedidoService = new PedidoService(pedidoRepository, produtoRepository, pedidoMapper, produtoMapper, notificacaoPedidoProducer, meterRegistry);
     }
 
 
@@ -68,8 +76,9 @@ public class PedidoServiceTest {
         when(pedidoMapper.pedidoRequestToPedido(Mockito.any())).thenReturn(pedidoMapeado);
 
         when(produtoRepository.save(any())).thenReturn(pedidoCriado.getListaProdutos().get(0));
-        when(produtoMapper.produtoRequestToProduto(Mockito.any(), Mockito.any())).thenReturn(pedidoMapeado.getListaProdutos().get(0));
+        when(produtoMapper.produtoRequestToProduto(Mockito.any())).thenReturn(pedidoMapeado.getListaProdutos().get(0));
 
+        when(meterRegistry.counter(any(), any(), any())).thenReturn(counter);
 
         pedidoService.processarPedidoAsync(listaPedidosRequest);
 
@@ -136,6 +145,7 @@ public class PedidoServiceTest {
                         .builder()
                         .nomeProduto("Televisão")
                         .quantidadeProduto(1)
+                        .idProduto(159)
                         .build()))
                 .build();
     }
@@ -150,6 +160,7 @@ public class PedidoServiceTest {
     private List<ProdutoRequest> criaListaProdutosRequest() {
         return Arrays.asList(ProdutoRequest.builder()
                 .nomeProduto("Televisão")
+                .idProduto(159)
                 .quantidadeProduto(1)
                 .build());
     }

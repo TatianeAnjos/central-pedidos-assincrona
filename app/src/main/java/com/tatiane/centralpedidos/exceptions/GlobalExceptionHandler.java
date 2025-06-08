@@ -16,10 +16,9 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(ErroNoProcessamentoDoPedidoException.class)
-    public ResponseEntity<String> handleErroNoProcessamentoDoPedidoException(PedidoInvalidoException ex) {
+    public ResponseEntity<String> handleErroNoProcessamentoDoPedidoException(ErroNoProcessamentoDoPedidoException ex) {
         return ResponseEntity
                 .status(HttpStatus.BAD_REQUEST)
                 .body(ex.getMessage());
     }
-
 }
