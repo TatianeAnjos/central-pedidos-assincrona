@@ -12,6 +12,9 @@ import com.tatiane.centralpedidos.mappers.ProdutoMapper;
 import com.tatiane.centralpedidos.producer.NotificacaoPedidoProducer;
 import com.tatiane.centralpedidos.repository.PedidoRepository;
 import com.tatiane.centralpedidos.repository.ProdutoRepository;
+import io.micrometer.core.annotation.Counted;
+import io.micrometer.core.annotation.Timed;
+import io.micrometer.core.instrument.MeterRegistry;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -33,9 +36,10 @@ public class PedidoService {
     private final PedidoMapper pedidoMapper;
     private final ProdutoMapper produtoMapper;
     private final NotificacaoPedidoProducer notificacaoPedidoProducer;
+    private final MeterRegistry meterRegistry;
 
 
-    public void processarPedidoAsync(List<PedidoRequest> listaPedidosRequest) throws ErroNoProcessamentoDoPedidoException {
+    public void processarPedidoAsync(List<PedidoRequest> listaPedidosRequest) throws ErroNoProcessamentoDoPedidoException, RuntimeException {
         log.info("Iniciando processamento de pedidos assíncrono");
         try {
             List<CompletableFuture<Void>> futures = listaPedidosRequest
@@ -64,7 +68,14 @@ public class PedidoService {
        notificacaoPedidoProducer.notificarClienteProducer(pedido);
     }
 
+    @Timed(value = "pedido.criar.tempo", description = "Tempo para criar pedido")
+    @Counted(value = "pedido.criar.total", description = "Total de pedidos criados")
     private Pedido processarPedido(PedidoRequest pedidoRequest) throws PedidoInvalidoException {
+
+        if(isNull(pedidoRequest.getListaProdutoRequest()) || isEmpty(pedidoRequest.getListaProdutoRequest())){
+            throw new PedidoInvalidoException("A lista de produtos não pode ser vazia.");
+        }
+
         log.info("PedidoService: Processamento de pedido em andamento");
 
         Pedido pedido = pedidoRepository.save(pedidoMapper.pedidoRequestToPedido(pedidoRequest));
@@ -84,6 +95,7 @@ public class PedidoService {
         List<Produto> listaProduto = listaProdutosRequest
                 .stream()
                 .map(produtoRequest -> {
+                    meterRegistry.counter("pedido.por.tipo.produto", "tipo", produtoRequest.getIdProduto().toString()).increment();
                     Produto produto = produtoMapper.produtoRequestToProduto(produtoRequest);
                     Produto ProdutoSalvo = produtoRepository.save(produto);
                     return produto;
@@ -98,8 +110,8 @@ public class PedidoService {
 
         listaPedidoResponse
                 .forEach(pedido -> {
-                    List<Produto> a = produtoRepository.findByIdPedido(pedido.getIdPedido());
-                    pedido.setListaProdutoResponse(a
+                    List<Produto> listaProdutos = produtoRepository.findByIdPedido(pedido.getIdPedido());
+                    pedido.setListaProdutoResponse(listaProdutos
                             .stream()
                             .map(produtoMapper::produtoToProdutoResponse).collect(Collectors.toList()));
                 });
